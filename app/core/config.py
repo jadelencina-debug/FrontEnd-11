@@ -4,11 +4,11 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     PROJECT_NAME: str = "Tienda API"
     DATABASE_URL: str
-    CORS_ORIGINS: str = "http://localhost:5173"
+    CORS_ORIGINS: str = "http://localhost:5173,http://127.0.0.1:5173,http://localhost:4173,http://127.0.0.1:4173"
     SECRET_KEY: str
     ALGORITHM: str = "HS256"
-    ACCESS_MIN: int = 30
-    REFRESH_MIN: int = 10080
+    ACCESS_MIN: int = 1440
+    REFRESH_MIN: int = 43200
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 

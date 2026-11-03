@@ -26,6 +26,14 @@ def get_current_user(
         headers={"WWW-Authenticate": "Bearer"},
     )
 
+    if not token or token.lower() in ("null", "undefined", "none", ""):
+        raise credenciales_invalidas
+
+    token = token.strip()
+    if token.startswith("Bearer "):
+        token = token[7:].strip()
+    token = token.strip('"\'')
+
     try:
         payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM])
     except JWTError:

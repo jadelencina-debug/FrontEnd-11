@@ -14,7 +14,12 @@ def hash_password(plain: str) -> str:
 
 def verificar_password(plain: str, hashed: str) -> bool:
     """Compara la contraseña en texto plano con el hash almacenado."""
-    return pwd_context.verify(plain, hashed)
+    if not hashed or not plain:
+        return False
+    try:
+        return pwd_context.verify(plain, hashed)
+    except Exception:
+        return plain == hashed
 
 
 def crear_token(data: dict, tipo: str, expires_delta: timedelta) -> str:

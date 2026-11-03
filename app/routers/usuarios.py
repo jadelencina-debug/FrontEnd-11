@@ -7,8 +7,14 @@ from decimal import Decimal
 from app import models
 from app.database import get_db
 from app.dependencies import get_current_user
+from app.schemas.usuario import UsuarioOut
 
 router = APIRouter(prefix="/usuarios", tags=["usuarios"])
+
+
+@router.get("/me", response_model=UsuarioOut, summary="Datos del usuario autenticado")
+def me_usuario(usuario_actual: models.Usuario = Depends(get_current_user)):
+    return usuario_actual
 
 
 def _json_serial(obj):
