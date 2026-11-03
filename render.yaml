@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: tienda-api
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: SECRET_KEY
+        value: 47a7cd35d4cac73e5a3f994f8eaf1c74de82096ac38734de799f3a04d8f066bb
+      - key: DATABASE_URL
+        value: sqlite:///./ecommerce.db
+      - key: CORS_ORIGINS
+        value: "*"
+      - key: PROJECT_NAME
+        value: Tienda API
+      - key: ALGORITHM
+        value: HS256
+      - key: ACCESS_MIN
+        value: "1440"
+      - key: REFRESH_MIN
+        value: "43200"
