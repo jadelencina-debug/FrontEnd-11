@@ -19,3 +19,4 @@ services:
         value: "1440"
       - key: REFRESH_MIN
         value: "43200"
+
